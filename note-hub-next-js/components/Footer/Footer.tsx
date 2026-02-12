@@ -4,12 +4,17 @@ import css from './Footer.module.css';
 export default function Footer() {
   return (
     <footer className={css.footer}>
-      <p className={css.wrap}>
-        © NoteHUB All rigths reserved. Created {new Date().getFullYear()}
+  <div className={css.content}>
+    <p>© {new Date().getFullYear()} NoteHUB. All rights reserved.</p>
+    <div className={css.wrap}>
+      <p>Developer: Shaplavskiy Yurii</p>
+      <p>
+        Contact us:
+        <a href="mailto:yurashaplavsky@gmail.com">yurashaplavsky@gmail.com</a>
       </p>
-      <Link href="mailto:yurashaplavsky@gmail.com">
-        Developer: yurashaplavsky@gmail.com
-      </Link>
-    </footer>
+    </div>
+  </div>
+</footer>
+
   );
 }
