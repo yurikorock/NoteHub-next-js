@@ -3,7 +3,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://notehub-public.goit.study/api';
 
-interface NotesListResponse {
+export interface NotesListResponse {
   notes: Note[];
   totalPages: number;
 }
@@ -23,6 +23,15 @@ export const getNotes = async (
     },
   });
 
+  return response.data;
+};
+
+export const fetchNoteById = async (id: string): Promise<Note> => {
+  const response = await axios.get<Note>(`/notes/${id}`, {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+    },
+  });
   return response.data;
 };
 
