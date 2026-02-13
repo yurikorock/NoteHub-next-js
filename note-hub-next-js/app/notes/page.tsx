@@ -1,4 +1,3 @@
-import NoteList from '@/components/NoteList/NoteList';
 import css from './Notes.module.css';
 import { getNotes } from '@/lib/api';
 import {

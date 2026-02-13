@@ -15,15 +15,9 @@ const NoteDetails = async ({ params }: Props) => {
   const { id } = await params;
   const queryClient = new QueryClient();
 
-  //   const note = await getSingleNote(id);
-  //   console.log(note);
-
-  //   const formattedDate = note.updatedAt
-  //     ? `Updated at: ${note.updatedAt}`
-  //     : `Created at: ${note.createdAt}`;
   await queryClient.prefetchQuery({
     queryKey: ['note', id],
-    queryFn:  () => fetchNoteById(id),
+    queryFn: () => fetchNoteById(id),
   });
 
   return (
@@ -35,14 +29,14 @@ const NoteDetails = async ({ params }: Props) => {
 export default NoteDetails;
 
 //prefetchQuery - функція, яка завчасно завантажить нам ці нотатки та збереже їх у кеш на сервері.
-  // Завдяки цьому при виклику useQuery у клієнтському компоненті, дані вже будуть доступні -
-  //  без повторного запиту.
+// Завдяки цьому при виклику useQuery у клієнтському компоненті, дані вже будуть доступні -
+//  без повторного запиту.
 
-  //queryKey - ключ, за яким дані будуть збережені у кеш
-  //queryFn - функція HTTP-запиту
+//queryKey - ключ, за яким дані будуть збережені у кеш
+//queryFn - функція HTTP-запиту
 
-  //Для того, щоб використати ці дані в клієнтському компоненті,
-  // необхідно використати HydrationBoundary із React Query.
+//Для того, щоб використати ці дані в клієнтському компоненті,
+// необхідно використати HydrationBoundary із React Query.
 
-  //HydrationBoundary - компонент, передає кеш клієнту
-  //dehydrate(queryClient) - перетворює кеш у серіалізований обʼєкт
+//HydrationBoundary - компонент, передає кеш клієнту
+//dehydrate(queryClient) - перетворює кеш у серіалізований обʼєкт
