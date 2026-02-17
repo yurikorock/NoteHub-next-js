@@ -7,6 +7,7 @@ export interface NotesListResponse {
   notes: Note[];
   totalPages: number;
 }
+export type NoteId = Note['id'];
 
 export const getNotes = async (
   query: string,
@@ -32,6 +33,18 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
     },
   });
+  return response.data;
+};
+
+export const deleteNote = async (id: NoteId): Promise<Note> => {
+  const response = await axios.delete<Note>(
+    `https://notehub-public.goit.study/api/notes/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+      },
+    },
+  );
   return response.data;
 };
 
