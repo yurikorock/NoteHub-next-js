@@ -1,4 +1,4 @@
-import { Note } from '@/types/note';
+import { Note, NotePost } from '@/types/note';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://notehub-public.goit.study/api';
@@ -39,6 +39,19 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
 export const deleteNote = async (id: NoteId): Promise<Note> => {
   const response = await axios.delete<Note>(
     `https://notehub-public.goit.study/api/notes/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+      },
+    },
+  );
+  return response.data;
+};
+
+export const createNote = async (note: NotePost): Promise<Note> => {
+  const response = await axios.post<Note>(
+    'https://notehub-public.goit.study/api/notes',
+    note,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
